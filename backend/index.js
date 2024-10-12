@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
@@ -16,6 +17,14 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/auth" , authRoutes);
+
+if(process.env.NODE_ENV === "production")
+{
+    app.use(express.static(path.join(__dirname,'..', "frontend/dist")));
+    app.get("*", (_, res) => {
+        res.sendFile(path.resolve(__dirname,'..', "frontend", "dist", "index.html"));
+    });
+}
 
 app.listen(PORT, ()=>{
     console.log("Server started at port" , PORT);
