@@ -4,9 +4,11 @@ import formatDate from "../utils/Date"
 
 const HomePage = () => {
     const { user, logout } = useAuthStore();
+    
     const handleLogout = () => {
         logout();
     };
+    
     return (
         <motion.div
             initial={{ opacity:0, scale:0.9 }}
