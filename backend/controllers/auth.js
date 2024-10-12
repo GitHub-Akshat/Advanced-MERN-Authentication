@@ -122,7 +122,7 @@ const forgetPassword = async (req,res) => {
 
         await user.save();
        
-        await sendForgetPassword(user.email, `${process.env.CLIENT_URL}/forgot-password/${resetPassToken}`);
+        await sendForgetPassword(user.email, `${process.env.CLIENT_URL}/reset-password/${resetPassToken}`);
 
         res.status(200).json({ success:true, message:"Password Reset Requested at your email"});
     } 

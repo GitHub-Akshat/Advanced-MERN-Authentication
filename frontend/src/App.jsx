@@ -80,13 +80,17 @@ function App() {
         <Route 
           path="/forgot-password" 
           element={
-            <ForgotPassPage/>
+            <RedirectAuthenticatedUser>
+              <ForgotPassPage/>
+            </RedirectAuthenticatedUser>
           }
         />
         <Route
 					path='/reset-password/:token'
 					element={
-						<ResetPasswordPage />
+            <RedirectAuthenticatedUser>  
+						  <ResetPasswordPage/>
+            </RedirectAuthenticatedUser>
 					}
 				/>
 				{/* catch all routes */}
