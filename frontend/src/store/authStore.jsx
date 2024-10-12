@@ -20,7 +20,7 @@ const useAuthStore = create((set) => ({
         set({isLoading:true, error:null});
         try{
             const response = await axios.post(`${API_URL}/signup`, {fullname, email, password});
-            set({newuser:response.data.newuser, isAuthenticated:true, isLoading:false});
+            set({user:response.data.user, isAuthenticated:true, isLoading:false});
         }
         catch(error)
         {

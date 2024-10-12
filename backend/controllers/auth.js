@@ -37,7 +37,7 @@ const Signup = async (req,res) =>
         generateTokenAndSetCookies(res, newuser._id);
         await sendVerificationEmail(newuser.email, newuser.VerificationToken );
 
-        res.status(201).json({success: true, message : "User created Successfully",  User:{ ...newuser._doc, password : undefined}
+        res.status(201).json({success: true, message : "User created Successfully",  user:{ ...newuser._doc, password : undefined}
         })
     }
     catch(error){
@@ -65,7 +65,7 @@ const verifyEmail = async (req, res) => {
 
         await sendWelcomeEmail(user.email, user.fullname);
 
-        res.status(201).json({ success: true, message: "Welcome email sent successfully", User :{ ...user._doc, password : undefined} })
+        res.status(201).json({ success: true, message: "Welcome email sent successfully", user:{ ...user._doc, password : undefined} })
     } 
     catch(error){
         console.error(error)
@@ -92,7 +92,7 @@ const Signin = async (req,res) => {
         user.lastLogin = new Date;
         await user.save();
 
-        res.status(201).json({ success: true, message: "Logged in successfully", User :{ ...user._doc, password : undefined} });
+        res.status(201).json({ success: true, message: "Logged in successfully", user :{ ...user._doc, password : undefined} });
     } 
     catch (error) {
         console.error(error)
